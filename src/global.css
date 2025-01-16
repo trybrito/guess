@@ -1,0 +1,46 @@
+:root {
+  font-size: 16px;
+
+  /* Base colors */
+  --surface: #fff;
+  --inner-letter: #000;
+  --iced-surface: #f5f5fa;
+  --gray-300: #c3c3c3;
+  --gray-400: #afafaf;
+  --gray-500: #9b9b9b;
+
+  /* Primary colors */
+  --letter-slot: #ebebfc;
+  --primary-100: #6363db;
+  --primary-300: #4f4fb9;
+  --primary-700: #32325f;
+
+  --secondary: #ffcf62;
+  --border-secondary: #691b0a;
+  --tries-color: #e8891c;
+
+  --success-fill: #e1f5ec;
+  --success-border: #03ab4f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -mos-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+
+button {
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
