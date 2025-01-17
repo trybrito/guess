@@ -1,0 +1,38 @@
+.letter {
+  width: 3.37rem;
+  height: 3.37rem;
+  border-radius: 10px;
+
+  background-color: var(--secondary-surface);
+  color: var(--primary-300);
+
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letterSmall {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 7px;
+
+  font-size: 1.25rem;
+  font-weight: 500;
+  border: 1px solid var(--primary-100);
+}
+
+.letterCorrect {
+  background-color: var(--success-fill);
+  border: 1px solid var(--success-border);
+  color: var(--success-border);
+}
+
+.letterWrong {
+  background-color: var(--wrong-fill);
+  border: 1px solid var(--wrong-border);
+  color: var(--wrong-border);
+}

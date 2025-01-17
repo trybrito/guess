@@ -1,0 +1,14 @@
+.button {
+  text-align: center;
+  height: 2.87rem;
+  border-radius: 7px;
+
+  background-color: var(--primary-100);
+  border: 2px solid var(--primary-300);
+  color: var(--secondary-surface);
+
+  padding: 0 0.875rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+}

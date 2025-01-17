@@ -1,0 +1,21 @@
+.input {
+  width: 2.87rem;
+  height: 2.87rem;
+
+  background-color: var(--secondary-surface);
+  border: 2px solid var(--primary-100);
+  color: var(--primary-100);
+  border-radius: 0.43rem;
+
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+
+  font-family: inherit;
+  outline: none;
+
+  &::placeholder {
+    color: var(--primary-100);
+  }
+}
