@@ -6,7 +6,7 @@ type Props = {
   color?: "default" | "correct" | "wrong";
 };
 
-export function Letters({
+export function Letter({
   value = "",
   size = "default",
   color = "default",
