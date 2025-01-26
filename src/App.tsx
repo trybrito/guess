@@ -47,6 +47,8 @@ function App() {
     const letterInput = (event.target as HTMLFormElement)
       .children[0] as HTMLInputElement;
 
+    letterInput.focus();
+
     if (!challenge) {
       return;
     }
@@ -73,7 +75,6 @@ function App() {
     setLettersUsed((prevState) => [...prevState, { value, isCorrect }]);
     setScore(currentScore);
     setLetter('');
-    letterInput.focus();
   }
 
   useEffect(() => {
