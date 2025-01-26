@@ -1,6 +1,6 @@
 import styles from './app.module.css';
 
-import { FormEvent, FormHTMLAttributes, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { WORDS, Challenge } from './utils/words';
 
 import { Button } from './components/Button';
