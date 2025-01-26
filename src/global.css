@@ -33,7 +33,7 @@
 
 body {
   background-color: var(--iced-surface);
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 button {

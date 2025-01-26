@@ -1,6 +1,6 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
-type Props = React.ComponentProps<"button"> & {
+type Props = React.ComponentProps<'button'> & {
   title: string;
 };
 

@@ -1,25 +1,25 @@
-import styles from "./app.module.css";
+import styles from './app.module.css';
 
-import { useEffect, useState } from "react";
-import { WORDS, Challenge } from "./utils/words";
+import { FormEvent, FormHTMLAttributes, useEffect, useState } from 'react';
+import { WORDS, Challenge } from './utils/words';
 
-import { Button } from "./components/Button";
-import { Header } from "./components/Header";
-import { Input } from "./components/Input";
-import { Letter } from "./components/Letter";
-import { LettersUsed, LettersUsedProps } from "./components/LettersUsed";
-import { Tip } from "./components/Tip";
+import { Button } from './components/Button';
+import { Header } from './components/Header';
+import { Input } from './components/Input';
+import { Letter } from './components/Letter';
+import { LettersUsed, LettersUsedProps } from './components/LettersUsed';
+import { Tip } from './components/Tip';
 
 const ATTEMPTS_MARGIN = 5;
 
 function App() {
   const [score, setScore] = useState(0);
-  const [letter, setLetter] = useState("");
+  const [letter, setLetter] = useState('');
   const [lettersUsed, setLettersUsed] = useState<LettersUsedProps[]>([]);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
 
   function onRestartGame() {
-    const isConfirmed = window.confirm("Tem certeza de que deseja reiniciar?");
+    const isConfirmed = window.confirm('Tem certeza de que deseja reiniciar?');
 
     if (isConfirmed) {
       startGame();
@@ -32,7 +32,7 @@ function App() {
 
     setChallenge(randomWord);
     setScore(0);
-    setLetter("");
+    setLetter('');
     setLettersUsed([]);
   }
 
@@ -41,33 +41,39 @@ function App() {
     startGame();
   }
 
-  function handleConfirm() {
+  function handleConfirm(event: FormEvent) {
+    event.preventDefault();
+
+    const letterInput = (event.target as HTMLFormElement)
+      .children[0] as HTMLInputElement;
+
     if (!challenge) {
       return;
     }
 
     if (!letter.trim()) {
-      return alert("Digite uma letra");
+      return alert('Digite uma letra');
     }
 
     const value = letter.toLocaleUpperCase();
     const letterAlreadyUsed = lettersUsed.find((data) => data.value === value);
 
     if (letterAlreadyUsed) {
-      setLetter("");
+      setLetter('');
       return alert(`Você já utilizou a letra ${value}`);
     }
 
     const hits = challenge.word
       .toLocaleUpperCase()
-      .split("")
+      .split('')
       .filter((char) => char === value).length;
     const isCorrect = hits > 0;
     const currentScore = score + hits;
 
     setLettersUsed((prevState) => [...prevState, { value, isCorrect }]);
     setScore(currentScore);
-    setLetter("");
+    setLetter('');
+    letterInput.focus();
   }
 
   useEffect(() => {
@@ -80,14 +86,14 @@ function App() {
         return;
       }
 
-      if (score === challenge?.word.length) {
-        return endGame("Parabéns, você descobriu a palavra!");
+      if (score === challenge.word.length) {
+        return endGame('Parabéns, você descobriu a palavra!');
       }
 
       const attemptsLimit = challenge.word.length + ATTEMPTS_MARGIN;
 
       if (lettersUsed.length === attemptsLimit) {
-        return endGame("Que pena, você usou todas as tentativas :(");
+        return endGame('Que pena, você usou todas as tentativas :(');
       }
     }, 200);
   }, [score, lettersUsed.length]);
@@ -106,7 +112,7 @@ function App() {
         />
         <Tip tip={challenge.tip} />
         <div className={styles.word}>
-          {challenge.word.split("").map((letter, index) => {
+          {challenge.word.split('').map((letter, index) => {
             const letterThatMatchesUsedLetter = lettersUsed.find(
               (data) =>
                 data.value.toLocaleUpperCase() === letter.toLocaleUpperCase()
@@ -116,7 +122,7 @@ function App() {
               <Letter
                 key={index}
                 value={letterThatMatchesUsedLetter && letter}
-                color={letterThatMatchesUsedLetter ? "correct" : "default"}
+                color={letterThatMatchesUsedLetter ? 'correct' : 'default'}
               />
             );
           })}
@@ -124,18 +130,19 @@ function App() {
 
         <h4>Palpite</h4>
 
-        <div className={styles.guess}>
+        <form action="" onSubmit={handleConfirm} className={styles.guess}>
           <Input
+            type="text"
+            placeholder="?"
             autoFocus
             maxLength={1}
-            placeholder="?"
             value={letter}
             onChange={(event) =>
               setLetter(event.target.value.toLocaleUpperCase())
             }
           />
-          <Button title="Confirmar" onClick={handleConfirm} />
-        </div>
+          <Button type="submit" title="Confirmar" />
+        </form>
 
         <LettersUsed data={lettersUsed} />
       </main>

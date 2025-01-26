@@ -1,7 +1,7 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
-import logo from "../../assets/logo.png";
-import restart from "../../assets/restart.svg";
+import logo from '../../assets/logo.png';
+import restart from '../../assets/restart.svg';
 
 type Props = {
   current: number;
@@ -12,7 +12,7 @@ type Props = {
 export function Header({ current, max, onRestart }: Props) {
   return (
     <div className={styles.container}>
-      <img src={logo} alt="Ilustração. Logotipo do Guess" />
+      <img src={logo} alt="" />
 
       <header>
         <span>

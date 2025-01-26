@@ -1,6 +1,6 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
-import { Letter } from "../Letter";
+import { Letter } from '../Letter';
 
 export type LettersUsedProps = {
   value: string;
@@ -21,7 +21,7 @@ export function LettersUsed({ data }: Props) {
             key={index}
             value={value}
             size="small"
-            color={isCorrect ? "correct" : "wrong"}
+            color={isCorrect ? 'correct' : 'wrong'}
           />
         ))}
       </div>
