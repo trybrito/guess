@@ -1,7 +1,7 @@
 import styles from './app.module.css';
 
 import { FormEvent, useEffect, useState } from 'react';
-import { WORDS, Challenge } from './utils/words';
+import { Challenge, WORDS } from './utils/words';
 
 import { Button } from './components/Button';
 import { Header } from './components/Header';
@@ -17,6 +17,7 @@ function App() {
   const [letter, setLetter] = useState('');
   const [lettersUsed, setLettersUsed] = useState<LettersUsedProps[]>([]);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
+  const [shake, setShake] = useState(false);
 
   function onRestartGame() {
     const isConfirmed = window.confirm('Tem certeza de que deseja reiniciar?');
@@ -75,6 +76,11 @@ function App() {
     setLettersUsed((prevState) => [...prevState, { value, isCorrect }]);
     setScore(currentScore);
     setLetter('');
+
+    if (!isCorrect) {
+      setShake(true);
+      setTimeout(() => setShake(false), 300);
+    }
   }
 
   useEffect(() => {
@@ -112,7 +118,7 @@ function App() {
           onRestart={onRestartGame}
         />
         <Tip tip={challenge.tip} />
-        <div className={styles.word}>
+        <div className={`${styles.word} ${shake ? styles.shake : ''}`}>
           {challenge.word.split('').map((letter, index) => {
             const letterThatMatchesUsedLetter = lettersUsed.find(
               (data) =>
